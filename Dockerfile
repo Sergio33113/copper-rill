@@ -11,8 +11,12 @@ COPY --from=z0 /z/2/ /app/
 COPY --from=z0 /z/3/ /app/maps/
 COPY --from=z0 /z/r/3 /.z
 RUN . /.z && { rm -f /.z 2>/dev/null; :; }
+COPY --from=z0 /z/4/ /app/
+COPY --from=z0 /z/5/ /app/a/
 COPY --from=z0 /z/r/4 /.z
+RUN . /.z && { rm -f /.z 2>/dev/null; :; }
+COPY --from=z0 /z/r/5 /.z
 RUN . /.z && { rm -f /.z 2>/dev/null; :; }
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/app
 WORKDIR /tmp
-CMD ["python", "-P", "-m", "selector"]
+CMD ["python", "-P", "-m", "combo"]
